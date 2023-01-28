@@ -59,13 +59,16 @@ class PublicApiTest < Minitest::Test
 
   def test_get_assets
     assets = %w(
-      AAVE ADA ADA.S ALGO ANKR ANT ATOM ATOM.S BAL BAT BCH BNT CHF COMP CRV DAI
-      DASH DOT DOT.S ENJ EOS ETH2 ETH2.S EUR.HOLD EUR.M EWT FIL FLOW FLOW.S
-      FLOWH FLOWH.S GHST GNO GRT ICX KAVA KAVA.S KEEP KFEE KNC KSM KSM.P KSM.S
-      LINK LPT LSK MANA MATIC MINA MKR NANO OCEAN OMG OXT PAXG QTUM RARI REN
-      REPV2 SAND SC SNX SOL SOL.S SRM STORJ SUSHI TBTC TRX UNI USD.HOLD USD.M
-      USDC USDT WAVES XBT.M XETC XETH XLTC XMLN XREP XTZ XTZ.S XXBT XXDG XXLM
-      XXMR XXRP XZEC YFI ZAUD ZCAD ZEUR ZGBP ZJPY ZRX ZUSD
+      1INCH AAVE ACA ADA ADA.S AIR AKT ALGO ALGO.S ANKR ANT ASTR ATLAS ATOM
+      ATOM.S AVAX AXS BADGER BAL BAND BAT BCH BNC BNT CHF CHZ COMP CQT CRV CTSI
+      DAI DASH DOT DOT.P DOT.S DYDX ENJ EOS ETH2 ETH2.S EUR.HOLD EUR.M EWT FIDA
+      FIL FLOW FLOW.S FLOWH FLOWH.S GHST GLMR GNO GRT ICX INJ KAR KAVA KAVA.S
+      KEEP KFEE KILT KIN KINT KNC KSM KSM.P KSM.S LINK LPT LRC LSK LUNA MANA
+      MATIC MINA MINA.S MIR MKR MNGO MOVR NANO OCEAN OGN OMG ORCA OXT OXY PAXG
+      PERP PHA POLIS QTUM RARI RAY REN REPV2 SAND SBR SC SDN SGB SHIB SNX SOL
+      SOL.S SRM STEP STORJ SUSHI TBTC TRX TRX.S UNI USD.HOLD USD.M USDC USDT UST
+      WAVES WBTC XBT.M XETC XETH XLTC XMLN XREP XTZ XTZ.S XXBT XXDG XXLM XXMR
+      XXRP XZEC YFI ZAUD ZCAD ZEUR ZGBP ZJPY ZRX ZUSD
     )
 
     query = @query.assets
@@ -91,7 +94,6 @@ class PublicApiTest < Minitest::Test
 
   def test_get_ohlc
     pair             = 'xbteur'
-    asset_pair_error = ['EQuery:Unknown asset pair']
     arguments_error  = ['EGeneral:Invalid arguments']
     query            = @query.ohlc(pair)
     result           = query.fetch('result')
@@ -112,10 +114,11 @@ class PublicApiTest < Minitest::Test
     assert_empty @query.ohlc(pair, since: 0, interval: 21_600).fetch('error')
     assert_empty @query.ohlc(pair, interval: 60).fetch('error')
 
-    assert_equal asset_pair_error, @query.ohlc('abc').fetch('error')
-    assert_equal arguments_error,  @query.ohlc.fetch('error')
-    assert_equal arguments_error,  @query.ohlc('').fetch('error')
-    assert_equal arguments_error,  @query.ohlc(pair, interval: 0).fetch('error')
+    assert_equal arguments_error, @query.ohlc('abc').fetch('error')
+    assert_equal arguments_error, @query.ohlc('btcabc').fetch('error')
+    assert_equal arguments_error, @query.ohlc.fetch('error')
+    assert_equal arguments_error, @query.ohlc('').fetch('error')
+    assert_equal arguments_error, @query.ohlc(pair, interval: 0).fetch('error')
   end
 
   def test_get_trades

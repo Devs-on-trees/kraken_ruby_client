@@ -13,6 +13,9 @@ Bundler/OrderedGems:
 Gemspec/DateAssignment:
   Enabled: false
 
+Gemspec/RequireMFA:
+  Enabled: false
+
 Layout/BeginEndAlignment:
   Enabled: true
 
@@ -27,6 +30,9 @@ Layout/LineLength:
   AllowHeredoc: true
   AllowURI: true
   IgnoreCopDirectives: false
+
+Layout/LineEndStringConcatenationIndentation:
+  Enabled: false
 
 Layout/MultilineMethodCallIndentation:
   Enabled: false
@@ -44,6 +50,12 @@ Layout/SpaceInLambdaLiteral:
   Enabled: false
 
 Lint/AmbiguousAssignment:
+  Enabled: true
+
+Lint/AmbiguousOperatorPrecedence:
+  Enabled: true
+
+Lint/AmbiguousRange:
   Enabled: true
 
 Lint/AssignmentInCondition:
@@ -100,6 +112,9 @@ Lint/HashCompareByIdentity:
 Lint/IdentityComparison:
   Enabled: true
 
+Lint/IncompatibleIoSelectWithFiberScheduler:
+  Enabled: true
+
 Lint/LambdaWithoutLiteralBlock:
   Enabled: true
 
@@ -128,6 +143,9 @@ Lint/RedundantDirGlobSort:
   Enabled: true
 
 Lint/RedundantSafeNavigation:
+  Enabled: true
+
+Lint/RequireRelativeSelfPath:
   Enabled: true
 
 Lint/SelfAssignment:
@@ -161,6 +179,9 @@ Lint/UnreachableLoop:
   Enabled: true
 
 Lint/UselessMethodDefinition:
+  Enabled: true
+
+Lint/UselessRuby2Keywords:
   Enabled: true
 
 Lint/UselessTimes:
@@ -221,7 +242,16 @@ Minitest/RefutePathExists:
 Minitest/TestMethodName:
   Enabled: true
 
+Minitest/UnreachableAssertion:
+  Enabled: true
+
 Minitest/UnspecifiedException:
+  Enabled: true
+
+Naming/BlockForwarding:
+  Enabled: true
+
+Naming/InclusiveLanguage:
   Enabled: true
 
 Naming/MemoizedInstanceVariableName:
@@ -246,6 +276,9 @@ Performance/BlockGivenWithExplicitBlock:
   Enabled: true
 
 Performance/CollectionLiteralInLoop:
+  Enabled: true
+
+Performance/ConcurrentMonotonicTime:
   Enabled: true
 
 Performance/ConstantRegexp:
@@ -278,10 +311,16 @@ Performance/SortReverse:
 Performance/Squeeze:
   Enabled: true
 
+Performance/StringIdentifierArgument:
+  Enabled: true
+
 Performance/StringInclude:
   Enabled: true
 
 Performance/Sum:
+  Enabled: true
+
+Security/IoMethods:
   Enabled: true
 
 Style/AccessorGrouping:
@@ -323,6 +362,12 @@ Style/ExplicitBlockArgument:
 Style/ExponentialNotation:
   Enabled: true
 
+Style/FileRead:
+  Enabled: true
+
+Style/FileWrite:
+  Enabled: true
+
 Style/GlobalStdStream:
   Enabled: true
 
@@ -359,6 +404,9 @@ Style/InPatternThen:
 Style/KeywordParametersOrder:
   Enabled: true
 
+Style/MapToHash:
+  Enabled: true
+
 Style/MultilineInPatternThen:
   Enabled: true
 
@@ -366,6 +414,15 @@ Style/NegatedIfElseCondition:
   Enabled: true
 
 Style/NilLambda:
+  Enabled: true
+
+Style/NumberedParameters:
+  Enabled: true
+
+Style/NumberedParametersLimit:
+  Enabled: true
+
+Style/OpenStructUse:
   Enabled: true
 
 Style/OptionalBooleanParameter:
@@ -402,6 +459,12 @@ Style/RedundantRegexpEscape:
   Enabled: true
 
 Style/RedundantSelfAssignment:
+  Enabled: true
+
+Style/RedundantSelfAssignmentBranch:
+  Enabled: true
+
+Style/SelectByRegexp:
   Enabled: true
 
 Style/SingleArgumentDig:
