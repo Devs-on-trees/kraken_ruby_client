@@ -545,6 +545,28 @@ module Kraken
       post_private 'WithdrawCancel', opts
     end
 
+    # Request staking product list (POST)
+    # URL: https://api.kraken.com/0/private/Staking/Pending
+    #
+    # Examples:
+    #
+    # require 'kraken_ruby_client'
+    # client = Kraken::Client.new(api_key: YOUR_KEY, api_secret: YOUR_SECRET)
+    # query_orders = client.get_staking()
+    #
+    def get_pending_staking(opts = {})
+      post_private 'Staking/Pending', opts
+    end
+
+    def get_stakeable(opts = {})
+      post_private 'Staking/Assets', opts
+    end
+
+    def get_staking_transactions(opts = {})
+      post_private 'Staking/Transactions', opts
+    end
+
+
     private
 
     # HTTP GET request for public API queries.
@@ -560,6 +582,21 @@ module Kraken
     #
     def post_private(method, opts = {})
       url = "#{@api_private_url}#{method}"
+      nonce = opts['nonce'] = generate_nonce
+      params = opts.map { |param| param.join('=') }.join('&')
+
+      http = Curl.post(url, params) do |request|
+        request.headers = {
+          'api-key'  => @api_key,
+          'api-sign' => authenticate(auth_url(method, nonce, params))
+        }
+      end
+
+      parse_response(http)
+    end
+
+    def post_private_staking(method, opts)
+      url = "#{@api_private_url}/Staking/#{method}"
       nonce = opts['nonce'] = generate_nonce
       params = opts.map { |param| param.join('=') }.join('&')
 
